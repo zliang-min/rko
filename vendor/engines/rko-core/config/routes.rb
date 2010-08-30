@@ -5,5 +5,5 @@ Rko::Application.routes.draw do
     resources 'routes'
   end
 
-  match '/(*anything)' => Admin::Dispatcher
+  match '/(*anything)' => Rko::Dispatcher
 end

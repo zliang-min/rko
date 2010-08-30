@@ -8,7 +8,7 @@ require "active_resource/railtie"
 require "rails/test_unit/railtie"
 
 #require File.expand_path('../../vendor/engines/admin/lib/admin/engine', __FILE__)
-require 'admin'
+require 'rko'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.

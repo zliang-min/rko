@@ -1,11 +1,11 @@
 require 'usher'
 
-module Admin
-  autoload :Dispatcher, 'admin/dispatcher'
+module Rko
+  autoload :Dispatcher, 'rko/dispatcher'
 
   def self.routes
     @routes ||= Usher.new :request_methods => [:request_method, :domain]
   end
 end
 
-require 'admin/engine' if defined?(Rails::Engine)
+require 'rko/engine' if defined?(Rails::Engine)

@@ -4,26 +4,34 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{rko-admin}
+  s.name = %q{rko-core}
   s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Gimi Liang"]
   s.date = %q{2010-08-30}
-  s.description = %q{The admin engine for RKO. A core component.}
+  s.description = %q{The core engine for RKO, which includes all basic concepts of the RKO framework.}
   s.email = %q{liangzhimin@51hejia.com}
   s.files = [
     "./Rakefile",
      "./VERSION",
      "app/controllers/admin/index_controller.rb",
      "app/controllers/admin/routes_controller.rb",
-     "lib/admin/engine.rb"
+     "lib/rko.rb",
+     "lib/rko/dispatcher.rb",
+     "lib/rko/engine.rb",
+     "lib/rko/page.rb",
+     "lib/rko/resource.rb"
   ]
   s.homepage = %q{http://github.com/Gimi/rko}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{The admin engine for RKO.}
+  s.summary = %q{The core engine for RKO.}
+  s.test_files = [
+    "test/test_helper.rb",
+     "test/performance/browsing_test.rb"
+  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

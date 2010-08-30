@@ -1,7 +1,7 @@
 PATH
-  remote: vendor/engines/admin
+  remote: vendor/engines/rko-core
   specs:
-    rko-admin (1.0.0)
+    rko-core (1.0.0)
       usher
 
 GEM
@@ -84,5 +84,5 @@ PLATFORMS
 
 DEPENDENCIES
   rails (= 3.0.0)
-  rko-admin!
+  rko-core!
   thin

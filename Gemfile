@@ -4,7 +4,7 @@ gem 'thin', :group => :server
 
 gem 'rails', '3.0.0'
 
-gem 'rko-admin', :path => 'vendor/engines/admin'
+gem 'rko-core', :path => 'vendor/engines/rko-core'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

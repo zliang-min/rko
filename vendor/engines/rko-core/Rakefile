@@ -3,9 +3,9 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "rko-admin"
-    gem.summary = %Q{The admin engine for RKO.}
-    gem.description = %Q{The admin engine for RKO. A core component.}
+    gem.name = "rko-core"
+    gem.summary = %Q{The core engine for RKO.}
+    gem.description = %Q{The core engine for RKO, which includes all basic concepts of the RKO framework.}
     gem.email = "liangzhimin@51hejia.com"
     gem.homepage = "http://github.com/Gimi/rko"
     gem.authors = ["Gimi Liang"]
