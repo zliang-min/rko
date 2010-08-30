@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+# Run a server serve this application.
+
+require ::File.expand_path('../config/environment',  __FILE__)
+
+Bundler.require :server
+
+Thin::Server.start 3000 do
+  use Rails::Rack::LogTailer, "log/#{Rails.env}.log" # unless options[:deamonize]
+  use Rails::Rack::Debugger if $DEBUG
+
+  run Rko::Application
+end
