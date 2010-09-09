@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'thin', :group => :server
 
 gem 'rails', '3.0.0'
+gem 'bson_ext', '~> 1.0.7'
+gem 'mongorb', :path => '/home/gimi/projects/hejia/mongorb'
 
 gem 'rko-core', :path => 'vendor/engines/rko-core'
 

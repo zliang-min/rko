@@ -1,6 +1,8 @@
 module Rko
-  module Resource
-    key 'title'
-    key 'description'
+  class Resource
+    include Mongoid::Document
+
+    field 'title'
+    field 'description'
   end
 end

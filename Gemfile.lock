@@ -1,4 +1,13 @@
 PATH
+  remote: /home/gimi/projects/hejia/mongorb
+  specs:
+    mongorb (0.0.1)
+      activemodel (~> 3)
+      activesupport (~> 3)
+      dm-core (~> 1)
+      mongo (~> 1.0.8)
+
+PATH
   remote: vendor/engines/rko-core
   specs:
     rko-core (1.0.0)
@@ -34,13 +43,20 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
+    addressable (2.2.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
+    bson (1.0.7)
+    bson_ext (1.0.7)
     builder (2.1.2)
     daemons (1.1.0)
+    dm-core (1.0.0)
+      addressable (~> 2.1)
+      extlib (~> 0.9.15)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
+    extlib (0.9.15)
     fuzzyhash (0.0.11)
     i18n (0.4.1)
     mail (2.2.5)
@@ -48,6 +64,8 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
+    mongo (1.0.8)
+      bson (>= 1.0.5)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.12)
@@ -83,6 +101,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bson_ext (~> 1.0.7)
+  mongorb!
   rails (= 3.0.0)
   rko-core!
   thin

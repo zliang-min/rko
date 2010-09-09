@@ -1,13 +1,25 @@
 module Rko
   class Dispatcher
-    class << self
+    class Processor
       def call(env)
-        if response = Rko.routes.recognize(ActionDispatch::Request.new(env))
-          response.destination.call(env)
-        else
-          raise ActionController::RoutingError, "No route matches #{env['PATH_INFO']}"
-        end
+
       end
     end
-  end
-end
+
+    class << self
+      def call(env)
+        request = ActionDispatch::Request.new env
+        if (response = Rko.routes.recognize(request)).succeeded?
+          env['rko.route.params'] = response.params_as_hash
+          response.destination[:resource_type].constantize.where(:id => response.destination[:resource_id]).call env
+        else
+          raise ActionController::RoutingError, "No route matches #{request.path}"
+        end
+      end
+
+      def add_route(path, options = nil)
+        Rko.routes.add_route(path, options).to(Processor)
+      end
+    end # class << self
+  end # Dispatcher
+end # Rko

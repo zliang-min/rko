@@ -13,4 +13,12 @@ class Admin::RoutesController < ApplicationController
     end
   end
 
+  def create
+    @route = Route.new params[:route]
+    if @route.save
+      Rko.routes.add_route @route.path, :conditions => {}, :requirements => {}
+    end
+    response_with @route
+  end
+
 end
