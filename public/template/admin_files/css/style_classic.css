@@ -1,0 +1,77 @@
+body {
+	background: #E6E6E6 url('../images/classic_bg.gif') repeat-y top left;
+}
+
+
+
+#sidebar {
+	background: none;
+}
+
+.logo { background: url('../images/classic_bg_logo.gif') repeat-x top left; }
+.top_nav { background: url('../images/classic_bg_header.gif') repeat-x top left; }
+
+.title a { color: #575247; }
+.session { color: #766E5F; }
+.session a { color: #61BCD0; }
+
+#navigation a { color: #BEB7A9; }
+#navigation a:hover { color: #D1CABB; }
+
+.navhead, .navhead_blank {
+	background: #609EAB url('../images/classic_bg_navhead.gif') repeat-x top left;
+	border: 1px solid #64A6B4;
+	color: #87D4E4;
+}
+	.navhead_blank a { color: #87D4E4 !important; }
+	.navhead_blank a:hover { color: #fff !important; }
+	.navhead:hover, .navhead_blank:hover { border: 1px solid #7FD9EF; }
+
+.subnav {
+	background: #E5E5E5;
+}
+
+.navbullet {
+	background: url('../images/classic_navbullet.png') no-repeat;
+}
+
+.submenu li a { color: #545454 !important; border-bottom: 1px solid #eee; }
+.submenu li a:hover { color: #000 !important; }
+
+
+#copyrights {
+	background: #DCDCDC url('../images/classic_splash.gif') no-repeat 8px;
+	color: #807A6F;
+}
+#copyrights a { color: #B9B9B9; }
+
+
+
+#content {
+	background: #D7D7D7;
+}
+
+tbody tr:hover td { background: #fff; }
+
+/* Code & Pre */
+
+code,
+pre {
+	border-left: 4px solid #609DAA;
+}
+
+/* Forms */
+
+.submit:hover,
+.button:hover {
+	color: #609DAA;
+}
+
+/* Pagination */
+/* Class .current is used to mark current page; */
+
+.paginator li a:hover, .paginator li.current a {
+	color: #3B6B75;
+	border: 1px solid #609DAA;
+	background: #9CD2DD;
+}

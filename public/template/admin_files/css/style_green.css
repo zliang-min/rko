@@ -1,0 +1,78 @@
+body {
+	background: #F5F5F5 url('../images/green_bg.gif') repeat-y top left;
+}
+
+#sidebar {
+	background: none;
+	border-right: 1px solid #fff;
+}
+
+.logo { background: url('../images/green_bg_logo.gif') repeat-x top left; }
+.top_nav { background: url('../images/classic_bg_header.gif') repeat-x top left; }
+
+.title a { color: #575247; }
+.session { color: #766E5F; }
+.session a { color: #989F30; }
+
+#navigation a { color: #F0F58E; }
+#navigation a:hover { color: #fff; }
+
+.navhead, .navhead_blank {
+	background: #B9BF66 url('../images/green_bg_navhead.gif') repeat-x top left;
+	border: 1px solid #C7CC6E;
+	color: #F0F58E;
+}
+	.navhead:hover, .navhead_blank:hover { border: 1px solid #F0F58E; }
+
+.subnav {
+	background: #82864C;
+}
+
+.navbullet {
+	background: url('../images/green_navbullet.png') no-repeat;
+}
+
+.submenu li a { border-bottom: 1px solid #8C8F5A; }
+
+
+
+#copyrights {
+	background: #7B7F42 url('../images/green_splash.gif') no-repeat 8px;
+	color: #807A6F;
+}
+#copyrights a { color: #909460; }
+
+
+
+#content {
+	background: #C5CB69;
+}
+	.box {
+		background: #fff url('../images/bg_box.gif') repeat-x top left;
+		border: 1px solid #fff;
+	}
+	
+tbody tr:hover td { background: #F7FBAB; }
+
+/* Code & Pre */
+
+code,
+pre {
+	border-left: 4px solid #C7CC6E;
+}
+
+/* Forms */
+
+.submit:hover,
+.button:hover {
+	color: #C7CC6E;
+}
+
+/* Pagination */
+/* Class .current is used to mark current page; */
+
+.paginator li a:hover, .paginator li.current a {
+	color: #707434;
+	border: 1px solid #AAAF5B;
+	background: #E8ED92;
+}
