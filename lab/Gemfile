@@ -1,0 +1,14 @@
+source 'http://rubygems.org'
+
+gem 'thin', :group => :server
+
+gem 'sinatra', :git => 'http://github.com/sinatra/sinatra.git'
+
+gem 'url_mount', '~> 0.2.1'
+gem 'usher',     '~> 0.8.3'
+
+gem 'tilt', '~> 1.1'
+gem 'haml', '~> 3.0.18'
+
+gem 'bson_ext', '~> 1.0.7'
+gem 'mongorb',  :path => '/home/gimi/projects/hejia/mongorb'

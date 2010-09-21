@@ -1,5 +1,5 @@
 body {
-	background: #BEB7A9 url('../images/coffee_bg.gif') repeat-y top left;
+	background: #BEB7A9 url('images/style/coffee/coffee_bg.gif') repeat-y top left;
 }
 
 
@@ -9,8 +9,8 @@ body {
 	border-right: 1px solid #D0C9BB;
 }
 
-.logo { background: url('../images/coffee_bg_logo.gif') repeat-x top left; }
-.top_nav { background: url('../images/coffee_bg_header.gif') repeat-x top left; }
+.logo { background: url('images/style/coffee/coffee_bg_logo.gif') repeat-x top left; }
+.top_nav { background: url('images/style/coffee/coffee_bg_header.gif') repeat-x top left; }
 
 .title a { color: #575247; }
 .session { color: #766E5F; }
@@ -20,7 +20,7 @@ body {
 #navigation a:hover { color: #D1CABB; }
 
 .navhead, .navhead_blank {
-	background: #867E6E url('../images/coffee_bg_navhead.gif') repeat-x top left;
+	background: #867E6E url('images/style/coffee/coffee_bg_navhead.gif') repeat-x top left;
 	border: 1px solid #8A8271;
 	color: #BEB7A9;
 }
@@ -31,7 +31,7 @@ body {
 }
 
 .navbullet {
-	background: url('../images/coffee_navbullet.png') no-repeat;
+	background: url('images/style/coffee/coffee_navbullet.png') no-repeat;
 }
 
 .submenu li a { border-bottom: 1px solid #757168; }
@@ -39,7 +39,7 @@ body {
 
 
 #copyrights {
-	background: #615C52 url('../images/coffee_splash.gif') no-repeat 8px;
+	background: #615C52 url('images/style/coffee/coffee_splash.gif') no-repeat 8px;
 	color: #807A6F;
 }
 #copyrights a { color: #807A6F; }
@@ -50,7 +50,7 @@ body {
 	background: #C5BEB2;
 }
 	.box {
-		background: #fff url('../images/bg_box.gif') repeat-x top left;
+		background: #fff url('images/bg_box.gif') repeat-x top left;
 		border: 1px solid #fff;
 	}
 	

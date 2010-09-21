@@ -1,0 +1,10 @@
+# encoding: utf-8
+source "http://rubygems.org"
+
+gem 'thin', :group => :server
+
+gem 'sinatra', :git => 'http://github.com/sinatra/sinatra.git'
+gem 'haml'
+
+gem 'mysql2'
+gem 'activerecord', '~> 3'

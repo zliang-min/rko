@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'fileutils'
+
+if ARGV.include?('s')
+  %w[coffee classic green].each do |style|
+    path = File.expand_path "../admin_files/css/images/style/#{style}", __FILE__
+    FileUtils.mkdir_p path
+
+    %W[
+      #{style}_bg.gif
+      #{style}_bg_logo.gif
+      #{style}_bg_header.gif
+      #{style}_bg_navhead.gif
+      #{style}_navbullet.png
+      #{style}_splash.gif
+    ].each do |image|
+      `wget -O "#{File.join path, image}" "#{File.join 'http://usarzewicz.org/demos/splasher/images/', image}"`
+    end
+  end
+end
+
+if ARGV.include?('f')
+  %w[
+    bg_box.gif
+    validate_success.png
+    validate_error.png
+    bg_button.gif
+    smile_success.gif
+    smile_error.gif
+    smile_notice.gif
+  ].each do |image|
+      `wget -O "#{File.expand_path "../admin_files/css/images/#{image}", __FILE__}" "#{File.join 'http://usarzewicz.org/demos/splasher/images/', image}"`
+  end
+end

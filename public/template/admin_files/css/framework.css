@@ -58,7 +58,7 @@ acronym     { border-bottom: 1px dotted #666; }
 address     { margin: 0 0 1.5em; font-style: italic; }
 del         { color:#666; }
 
-pre,code,tt { font: 1em 'andale mono', 'lucida console', monospace; line-height: 1.5; }
+pre,code,tt { font: 1em '宋体', 'andale mono', 'lucida console', monospace; line-height: 1.5; }
 
 li ul, 
 li ol       { margin:0 1.5em; }
@@ -103,7 +103,7 @@ dd          { margin-left: 1.5em;}
 body { 
   font-size: 75%;
   color: #545454; 
-  font-family: "Arial", sans-serif;
+  font-family: "宋体", "Arial", sans-serif;
 }
 
 /* ====================== */
@@ -321,8 +321,8 @@ blockquote {
 	font-style: italic;
 	margin-left: 4px;
 }
-	.validate_success { background: url('../images/validate_success.png') no-repeat left; color: #39CE31; }
-	.validate_error { background: url('../images/validate_error.png') no-repeat left; color: #D33232; }
+	.validate_success { background: url('images/validate_success.png') no-repeat left; color: #39CE31; }
+	.validate_error { background: url('images/validate_error.png') no-repeat left; color: #D33232; }
 	
 /* ====================== */
 /* Forms                  */
@@ -370,14 +370,14 @@ textarea { width: 97%; margin-bottom: 6px; }
 input[type=text]:focus,
 input[type=password]:focus,
 textarea:focus {
-	background: #fff url('../images/bg_box.gif') repeat-x top left;
+	background: #fff url('images/bg_box.gif') repeat-x top left;
 }
 	
 /* Buttons */
 
 .submit,
 .button {
-	background: #fff url('../images/bg_button.gif') repeat-x bottom left;
+	background: #fff url('images/bg_button.gif') repeat-x bottom left;
 	border: 1px solid #aaa;
 	text-align: center;
 	color: #666;
@@ -390,7 +390,7 @@ textarea:focus {
 }
 	.submit:hover,
 	.button:hover {
-		background: #fff url('../images/bg_button_h.gif') repeat-x bottom left;
+		background: #fff url('images/bg_button_h.gif') repeat-x bottom left;
 	}
 
 	.submit { padding: 3px 10px; }
@@ -401,17 +401,17 @@ textarea:focus {
 /* ====================== */
 
 .notice {
-	background: #FFFECC url('../images/smile_notice.gif') no-repeat 10px;	
+	background: #FFFECC url('images/smile_notice.gif') no-repeat 10px;	
 	border: 1px solid #FAECB5;
 }
 
 .success {
-	background: #E2F9E3 url('../images/smile_success.gif') no-repeat 10px;	
+	background: #E2F9E3 url('images/smile_success.gif') no-repeat 10px;	
 	border: 1px solid #9ECE9E;
 }
 
 .error {
-	background: #FFEDEF url('../images/smile_error.gif') no-repeat 10px;	
+	background: #FFEDEF url('images/smile_error.gif') no-repeat 10px;	
 	border: 1px solid #FFC5CC;
 }
 
@@ -457,7 +457,7 @@ table {
 
 thead tr th {
 	font-weight: bold;
-	background: #fff url('../images/bg_box.gif') repeat-x top left;
+	background: #fff url('images/bg_box.gif') repeat-x top left;
 	border-bottom: 1px solid #eee;
 	padding: 4px 5px;
 }

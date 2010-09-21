@@ -1,0 +1,33 @@
+/* ====================== */
+/* Make it work under IE6 */
+/* ====================== */
+
+body { 
+  font-size: 105%;
+}
+
+#primary {
+	width: 73.0%;
+}
+
+.submenu li { margin-top: -9px; margin-bottom: -14px; }
+.submenu li a { padding: 6px 8px; }
+
+.subnav { margin-bottom: 10px; }
+
+textarea { width: 92%; margin: 0px 0px 4px 0px; }
+
+input.smallfield,
+input.mediumfield,
+input.bigfield,
+textarea.textbox {
+	background: #fff;
+	border: 1px solid #ddd;
+	padding: 5px 8px;
+
+}
+
+.submit {
+	position: relative;
+	top: 4px;
+}

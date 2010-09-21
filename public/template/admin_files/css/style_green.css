@@ -1,5 +1,5 @@
 body {
-	background: #F5F5F5 url('../images/green_bg.gif') repeat-y top left;
+	background: #F5F5F5 url('images/style/green/green_bg.gif') repeat-y top left;
 }
 
 #sidebar {
@@ -7,8 +7,8 @@ body {
 	border-right: 1px solid #fff;
 }
 
-.logo { background: url('../images/green_bg_logo.gif') repeat-x top left; }
-.top_nav { background: url('../images/classic_bg_header.gif') repeat-x top left; }
+.logo { background: url('images/style/green/green_bg_logo.gif') repeat-x top left; }
+.top_nav { background: url('images/style/classic/classic_bg_header.gif') repeat-x top left; }
 
 .title a { color: #575247; }
 .session { color: #766E5F; }
@@ -18,7 +18,7 @@ body {
 #navigation a:hover { color: #fff; }
 
 .navhead, .navhead_blank {
-	background: #B9BF66 url('../images/green_bg_navhead.gif') repeat-x top left;
+	background: #B9BF66 url('images/style/green/green_bg_navhead.gif') repeat-x top left;
 	border: 1px solid #C7CC6E;
 	color: #F0F58E;
 }
@@ -29,7 +29,7 @@ body {
 }
 
 .navbullet {
-	background: url('../images/green_navbullet.png') no-repeat;
+	background: url('images/style/green/green_navbullet.png') no-repeat;
 }
 
 .submenu li a { border-bottom: 1px solid #8C8F5A; }
@@ -37,7 +37,7 @@ body {
 
 
 #copyrights {
-	background: #7B7F42 url('../images/green_splash.gif') no-repeat 8px;
+	background: #7B7F42 url('images/style/green/green_splash.gif') no-repeat 8px;
 	color: #807A6F;
 }
 #copyrights a { color: #909460; }
@@ -48,7 +48,7 @@ body {
 	background: #C5CB69;
 }
 	.box {
-		background: #fff url('../images/bg_box.gif') repeat-x top left;
+		background: #fff url('images/bg_box.gif') repeat-x top left;
 		border: 1px solid #fff;
 	}
 	

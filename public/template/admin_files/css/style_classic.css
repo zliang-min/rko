@@ -1,5 +1,5 @@
 body {
-	background: #E6E6E6 url('../images/classic_bg.gif') repeat-y top left;
+	background: #E6E6E6 url('images/style/classic/classic_bg.gif') repeat-y top left;
 }
 
 
@@ -8,8 +8,8 @@ body {
 	background: none;
 }
 
-.logo { background: url('../images/classic_bg_logo.gif') repeat-x top left; }
-.top_nav { background: url('../images/classic_bg_header.gif') repeat-x top left; }
+.logo { background: url('images/style/classic/classic_bg_logo.gif') repeat-x top left; }
+.top_nav { background: url('images/style/classic/classic_bg_header.gif') repeat-x top left; }
 
 .title a { color: #575247; }
 .session { color: #766E5F; }
@@ -19,7 +19,7 @@ body {
 #navigation a:hover { color: #D1CABB; }
 
 .navhead, .navhead_blank {
-	background: #609EAB url('../images/classic_bg_navhead.gif') repeat-x top left;
+	background: #609EAB url('images/style/classic/classic_bg_navhead.gif') repeat-x top left;
 	border: 1px solid #64A6B4;
 	color: #87D4E4;
 }
@@ -32,7 +32,7 @@ body {
 }
 
 .navbullet {
-	background: url('../images/classic_navbullet.png') no-repeat;
+	background: url('images/style/classic/classic_navbullet.png') no-repeat;
 }
 
 .submenu li a { color: #545454 !important; border-bottom: 1px solid #eee; }
@@ -40,7 +40,7 @@ body {
 
 
 #copyrights {
-	background: #DCDCDC url('../images/classic_splash.gif') no-repeat 8px;
+	background: #DCDCDC url('images/style/classic/classic_splash.gif') no-repeat 8px;
 	color: #807A6F;
 }
 #copyrights a { color: #B9B9B9; }
