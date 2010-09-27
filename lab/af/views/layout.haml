@@ -1,0 +1,46 @@
+%html
+  %head
+    %meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+    %title(id="title")= settings.app_name
+    / ** CSS **
+    / base library
+    %link(rel="stylesheet" type="text/css" href="/ext-3.2.1/resources/css/ext-all.css")
+
+    / overrides to base library
+    %style(type="text/css")
+      :plain
+        .x-toolbar .btn-search {
+          background-image: url(images/action_refresh.gif);
+        }
+
+        .x-toolbar .x-btn-over .btn-search {
+          background-image: url(images/action_refresh_blue.gif);
+        }
+
+    / ** Javascript **
+    / ExtJS library: jquery/adapter
+    %script(type="text/javascript" src="/jquery.min.js")
+    %script(type="text/javascript" src="/ext-3.2.1/adapter/jquery/ext-jquery-adapter.js")
+
+    / ExtJS library: all widgets
+    %script(type="text/javascript" src="/ext-3.2.1/ext-all-debug.js")
+
+    / overrides to base library
+    / ++ nothing yet ++
+
+    / extensions
+    / ++ nothing yet ++
+
+    / page specific
+    :javascript
+      Ext.BLANK_IMAGE_URL = 'http://extjs.cachefly.net/ext-3.2.1/resources/images/default/s.gif';
+      $(function() {
+        Ext.QuickTips.init();
+        #{yield}
+      });
+  %body
+:ruby
+  #%link(rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css")
+  #%script(type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")
+  #%script(type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/jquery/ext-jquery-adapter.js")
+  #%script(type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all-debug.js")
