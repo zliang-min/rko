@@ -55,6 +55,14 @@ module ArticleFilter
       haml :index
     end
 
+    get '/articles/:id' do
+      if article = ArticleInfo.where(:id => params[:id]).first
+        haml :show_article, :locals => {:article => article}, :layout => false
+      else
+        halt 404
+      end
+    end
+
     get '/articles' do
       articles = ArticleInfo
       articles = articles.where :added_status => 0 if params[:uo] == 'true'
@@ -67,7 +75,7 @@ module ArticleFilter
       {
         success: true,
         total: articles.count,
-        rows: articles.order('created_at DESC').offset(params[:start]).limit(params[:limit])
+        rows: articles.select('id, title, created_at, added_status').order('created_at DESC').offset(params[:start]).limit(params[:limit])
       }.to_json
     end
   end

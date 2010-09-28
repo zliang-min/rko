@@ -2,11 +2,12 @@
   var ds = new Ext.data.JsonStore({
              autoDestroy: true,
              api: {read: {method: 'GET', url: '/articles'}},
-             //autoLoad: {params: {start: 0, limit: #{settings.per_page}}},
              fields: ['id', 'title', 'image', 'created_at', 'added_status'],
              root: 'rows'
            }),
-      gridId = Ext.id(),
+
+      gridId = Ext.id(), tabId = Ext.id(), showArticleId = Ext.id(),
+
       loadArticles = function() {
         var grid = Ext.getCmp(gridId);
         grid.getTopToolbar().items.each(function() {
@@ -14,7 +15,44 @@
             ds.setBaseParam(this.getName(), this.getValue());
         });
         ds.load({params: {start: 0, limit: grid.getBottomToolbar().pageSize}});
+      },
+
+      updateTab = function(tab, record) {
+        tab.setTitle(record.get('title'));
+        tab.load('/articles/' + record.get('id'));
+      },
+
+      currentIndex = 0,
+
+      loadArticle = function(dir, msg) {
+        if(dir != 'pre' && dir != 'next') return false;
+        if(dir == 'pre') --currentIndex; else ++currentIndex;
+        var record = ds.getAt(currentIndex), tab = Ext.getCmp(showArticleId);
+        if(!record) {
+          var paging = Ext.getCmp(gridId).getBottomToolbar(), start;
+          if(dir == 'pre')
+            start = paging.cursor - paging.pageSize;
+          else
+            start = paging.cursor + paging.pageSize;
+          if(dir == 'pre' && start < 0 || dir == 'next' && !(start < ds.getTotalCount())) {
+            Ext.Msg.alert('到头啦！', msg || '不要再按了，笨蛋。');
+            return false;
+          } else {
+            currentIndex = dir == 'pre' ? paging.pageSize : -1;
+            ds.load({
+              params: {
+                start: start,
+                limit: paging.pageSize
+              },
+              callback: function() { loadArticle(dir, msg) },
+              scope: this
+            });
+          }
+        } else {
+          updateTab(tab, record);
+        }
       };
+
   new Ext.Viewport({
     layout: 'border',
     items: [{
@@ -28,76 +66,116 @@
       }
     }, {
       region: 'center',
-      xtype: 'grid',
-      id: gridId,
-      store: ds,
-      colModel: new Ext.grid.ColumnModel({
-        defaults: {editable: false, menuDisabled: true},
-        columns: [
-          {header: 'ID',       dataIndex: 'id',           width: 50},
-          {header: '标题',     dataIndex: 'title',        width: 300},
-          {header: '图片',     dataIndex: 'image',        width: 100},
-          {header: '采集日期', dataIndex: 'created_at',   width: 100, align: 'center', renderer: function(value) { return Date.parseDate(value, 'c').format('Y年m月d日 H:i:s'); }},
-          {header: '收录状态', dataIndex: 'added_status', width: 50,  align: 'center', xtype: 'booleancolumn', falseText: '<span style="color:red">X</span>', trueText: '<span style="color:green">√</span>'}
-        ]
-      }),
-      sm: new Ext.grid.RowSelectionModel({singleSelect:true}),
-      title: '采集文章列表',
-      tbar: [
-        {
-          xtype: 'checkbox',
-          name: 'uo',
-          boxLabel: '仅显示未收录文章',
-          checked: true
-        }, ' ', '-', ' ', '显示', {
-          xtype: 'combo',
-          name: 'num',
-          width: 50,
-          mode: 'local',
-          editable: false,
-          triggerAction: 'all',
-          store: #{(1..30).to_a.to_json},
-          value: 1
-        }, {
-          xtype: 'combo',
-          name: 'unit',
-          width: 50,
-          mode: 'local',
-          editable: false,
-          triggerAction: 'all',
-          store: [
-            ['days', '天'], ['weeks', '星期'], ['months', '月'], ['years', '年']
-          ],
-          value: 'days'
-        }, '之内采集的文章', ' ', {
-          xtype: 'button',
-          iconCls: 'btn-search',
-          tooltip: '刷新列表',
-          /*
-          handler: function() {
-            Ext.getCmp(gridId).getTopToolbar().items.each(function() {
-              if(Ext.FormPanel.prototype.isField(this)){
-                ds.setBaseParam(this.getName(), this.getValue());}
-            });
-            Ext.getCmp(gridId).getBottomToolbar().moveFirst();
-          }
-          */
-          handler: loadArticles
-        }
-      ],
-      bbar: {
-        xtype: 'paging',
+      xtype: 'tabpanel',
+      id: tabId,
+      activeTab: 0,
+      enableTabScroll: true,
+      items: [{
+        xtype: 'grid',
+        id: gridId,
+        title: '采集文章列表',
         store: ds,
-        displayInfo: true,
-        displayMsg: '共{2}篇文章 | 当前显示第{0}至{1}篇',
-        emptyMsg: '没有符合条件的文章',
-        beforePageText: '第',
-        afterPageText: '页 共{0}页',
-        pageSize: #{settings.per_page},
-      },
-      viewConfig: {
-        forceFit: true
-      }
+        colModel: new Ext.grid.ColumnModel({
+          defaults: {editable: false, menuDisabled: true},
+          columns: [
+            {header: 'ID',       dataIndex: 'id',           width: 50},
+            {header: '标题',     dataIndex: 'title'},//,        width: 300},
+            {header: '采集日期', dataIndex: 'created_at',   width: 100, align: 'center', renderer: function(value) { return Date.parseDate(value, 'c').format('Y年m月d日 H:i:s'); }},
+            {header: '收录状态', dataIndex: 'added_status', width: 50,  align: 'center', xtype: 'booleancolumn', falseText: '<span style="color:red">X</span>', trueText: '<span style="color:green">√</span>'}
+          ]
+        }),
+        sm: new Ext.grid.RowSelectionModel({singleSelect:true}),
+        tbar: [
+          {
+            xtype: 'checkbox',
+            name: 'uo',
+            boxLabel: '仅显示未收录文章',
+            checked: true
+          }, ' ', '-', ' ', '显示', {
+            xtype: 'combo',
+            name: 'num',
+            width: 50,
+            mode: 'local',
+            editable: false,
+            triggerAction: 'all',
+            store: #{(1..30).to_a.to_json},
+            value: 1
+          }, {
+            xtype: 'combo',
+            name: 'unit',
+            width: 50,
+            mode: 'local',
+            editable: false,
+            triggerAction: 'all',
+            store: [
+              ['days', '天'], ['weeks', '星期'], ['months', '月'], ['years', '年']
+            ],
+            value: 'days'
+          }, '之内采集的文章', ' ', {
+            xtype: 'button',
+            iconCls: 'btn-search',
+            tooltip: '刷新列表',
+            /*
+            handler: function() {
+              Ext.getCmp(gridId).getTopToolbar().items.each(function() {
+                if(Ext.FormPanel.prototype.isField(this)){
+                  ds.setBaseParam(this.getName(), this.getValue());}
+              });
+              Ext.getCmp(gridId).getBottomToolbar().moveFirst();
+            }
+            */
+            handler: loadArticles
+          }
+        ],
+        bbar: {
+          xtype: 'paging',
+          store: ds,
+          displayInfo: true,
+          displayMsg: '共{2}篇文章 | 当前显示第{0}至{1}篇',
+          emptyMsg: '没有符合条件的文章',
+          beforePageText: '第',
+          afterPageText: '页 共{0}页',
+          pageSize: #{settings.per_page},
+        },
+        viewConfig: {
+          forceFit: true
+        },
+        listeners: {
+          rowclick: function(grid, index) {
+            currentIndex = index;
+            var tabPanel = Ext.getCmp(tabId),
+                tab = tabPanel.getItem(showArticleId);
+            if(tab) {
+              tabPanel.activate(tab);
+            } else {
+              tab = tabPanel.add({
+                id: showArticleId,
+                cls: 'article-tab',
+                autoScroll: true,
+                closable: true,
+                padding: 10,
+                tbar: [{
+                  text: '上一篇',
+                  iconCls: 'x-tbar-page-prev',
+                  handler: function() { loadArticle('pre', '这已经是第一篇文章了！') }
+                }, '-', {
+                  text: '下一篇',
+                  iconCls: 'x-tbar-page-next',
+                  handler: function() { loadArticle('next', '这已经是最后一篇文章了！') }
+                }, '->', {
+                  text: '导入',
+                  iconCls: 'btn-import'
+                }, '-', {
+                  text: '删除',
+                  iconCls: 'btn-delete'
+                }]
+              });
+              tab.show();
+            }
+            updateTab(tab, ds.getAt(index));
+          }
+        }
+      }]
     }],
     listeners: { afterrender: loadArticles }
   });
