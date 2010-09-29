@@ -1,37 +1,9 @@
 # encoding: utf-8
-require 'bundler/setup'
-
-require 'logger'
 
 require 'sinatra/base'
 require 'haml'
 
-require 'active_record'
-
-(ActiveRecord::Base.logger = Logger.new $stdout).level = Logger::DEBUG
-
-module ArticleFilter
-  module Models
-    class ArticleInfo < ActiveRecord::Base
-      establish_connection adapter: 'mysql2',
-                           encoding: 'UTF8',
-                           reconnect: false,
-                           database: '51hejia',
-                           pool: 1,
-                           host: '192.168.0.14',
-                           username: 'hejiasql',
-                           password: 'sql2009'
-
-      def added_status
-        read_attribute(:added_status) == 1
-      end
-
-      def added_status=(added_status)
-        write_attribute(:added_status, added_status ? 1 : 0)
-      end
-    end
-  end
-
+module ArticleCollector
   class Application < Sinatra::Base
     include Models
 
@@ -41,9 +13,7 @@ module ArticleFilter
       use Rack::CommonLogger
     end
 
-    set :app_file, __FILE__
-    set :app_name, '和家网 - 文章采集管理后台'
-    set :per_page, 20
+    register Settings
 
     helpers do
       def title
@@ -61,6 +31,11 @@ module ArticleFilter
       else
         halt 404
       end
+    end
+
+    get '/articles/:id/import' do
+      Worker.new(params[:id]).run!
+      ''
     end
 
     get '/articles' do

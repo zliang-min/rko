@@ -8,3 +8,5 @@ gem 'haml'
 
 gem 'mysql2'
 gem 'activerecord', '~> 3'
+
+gem 'nokogiri', '~> 1.4.3.1'

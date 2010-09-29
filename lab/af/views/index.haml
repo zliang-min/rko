@@ -64,6 +64,10 @@
     }
   },
 
+  importArticle = function() {
+    Ext.ds.getAt(currentIndex).get('id')
+  },
+
   articleTab = {
     id: showArticleId,
     cls: 'article-tab',

@@ -26,6 +26,7 @@ GEM
     haml (3.0.18)
     i18n (0.4.1)
     mysql2 (0.2.4)
+    nokogiri (1.4.3.1)
     rack (1.2.1)
     thin (1.2.7)
       daemons (>= 1.0.9)
@@ -40,5 +41,6 @@ DEPENDENCIES
   activerecord (~> 3)
   haml
   mysql2
+  nokogiri (~> 1.4.3.1)
   sinatra!
   thin
