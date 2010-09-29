@@ -4,6 +4,7 @@
     %title(id="title")= settings.app_name
     / ** CSS **
     / base library
+    -# %link(rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css")
     %link(rel="stylesheet" type="text/css" href="/ext-3.2.1/resources/css/ext-all.css")
 
     / overrides to base library
@@ -26,7 +27,7 @@
         }
 
         .article-tab .loading-indicator {
-          position: absolute; top: 40%; left: 45%; font-size: 1.6em; text-align: left;
+          position: absolute; top: 40%; left: 45%; font-size: 1.4em; text-align: left;
         }
 
         .article-tab h3 {
@@ -48,29 +49,26 @@
         }
 
     / ** Javascript **
-    / ExtJS library: jquery/adapter
-    %script(type="text/javascript" src="/jquery.min.js")
-    %script(type="text/javascript" src="/ext-3.2.1/adapter/jquery/ext-jquery-adapter.js")
+    / ExtJS library: base/adapter
+    -# %script(type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")
+    -# %script(type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/jquery/ext-jquery-adapter.js")
+    %script(type="text/javascript" src="/ext-3.2.1/adapter/ext/ext-base.js")
 
     / ExtJS library: all widgets
-    %script(type="text/javascript" src="/ext-3.2.1/ext-all-debug.js")
+    -# %script(type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all-debug.js")
+    %script{:type => "text/javascript", :src => "/ext-3.2.1/ext-all#{settings.development? && '-debug'}.js"}
 
     / overrides to base library
-    / ++ nothing yet ++
+    %script(type="text/javascript" src="/javascripts/ext-zh.js")
 
-    / extensions
+    / extensions/plugins
     / ++ nothing yet ++
 
     / page specific
     :javascript
       Ext.BLANK_IMAGE_URL = 'http://extjs.cachefly.net/ext-3.2.1/resources/images/default/s.gif';
-      $(function() {
+      Ext.onReady(function() {
         Ext.QuickTips.init();
         #{yield}
-      });
+      }, window, {single: true});
   %body
-:ruby
-  #%link(rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css")
-  #%script(type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")
-  #%script(type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/jquery/ext-jquery-adapter.js")
-  #%script(type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all-debug.js")
