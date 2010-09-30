@@ -5,7 +5,7 @@
     / ** CSS **
     / base library
     -# %link(rel="stylesheet" type="text/css" href="http://extjs.cachefly.net/ext-3.2.1/resources/css/ext-all.css")
-    %link(rel="stylesheet" type="text/css" href="/ext-3.2.1/resources/css/ext-all.css")
+    %link(rel="stylesheet" type="text/css" href="#{settings.ext_dns}/ext-3.2.1/resources/css/ext-all.css")
 
     / overrides to base library
     %style(type="text/css")
@@ -50,13 +50,11 @@
 
     / ** Javascript **
     / ExtJS library: base/adapter
-    -# %script(type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")
-    -# %script(type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/adapter/jquery/ext-jquery-adapter.js")
-    %script(type="text/javascript" src="/ext-3.2.1/adapter/ext/ext-base.js")
+    %script(type="text/javascript" src="#{settings.ext_dns}/ext-3.2.1/adapter/ext/ext-base.js")
 
     / ExtJS library: all widgets
     -# %script(type="text/javascript" src="http://extjs.cachefly.net/ext-3.2.1/ext-all-debug.js")
-    %script{:type => "text/javascript", :src => "/ext-3.2.1/ext-all#{settings.development? && '-debug'}.js"}
+    %script{:type => "text/javascript", :src => "#{settings.ext_dns}/ext-3.2.1/ext-all#{settings.development? && '-debug' || nil}.js"}
 
     / overrides to base library
     %script(type="text/javascript" src="/javascripts/ext-zh.js")
@@ -66,7 +64,7 @@
 
     / page specific
     :javascript
-      Ext.BLANK_IMAGE_URL = 'http://extjs.cachefly.net/ext-3.2.1/resources/images/default/s.gif';
+      Ext.BLANK_IMAGE_URL = '#{settings.ext_dns}/ext-3.2.1/resources/images/default/s.gif';
       Ext.onReady(function() {
         Ext.QuickTips.init();
         #{yield}

@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require_relative '../init'
+
+Bundler.require 'server'
+
+require 'optparse'
+
+# defaults
+options = {
+  host: '0.0.0.0',
+  port: 3000,
+  environment: :development,
+  daemonize: false
+}
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: server [options]'
+  opts.separator ''
+  opts.separator 'options:'
+
+  opts.on('-o', '--host HOST', "listen on HOST (default: #{options[:host]})") { |host| options[:host] = host }
+  opts.on('-p', '--port PORT', "use PORT (default: #{options[:port]})") { |port| options[:port] = port }
+  opts.on('-e', '--env ENVIRONMENT', "use ENVIRONMENT (default: #{options[:environment]})") { |env| options[:environment] = env }
+  opts.on('-d', "deamonize (default: #{options[:daemonize]})") { |daemonize| options[:daemonize] = daemonize }
+end.parse! ARGV
+
+ENV['RACK_ENV'] = options[:environment]
+Process.daemon if options.delete(:daemonize)
+
+ArticleCollector::Application.run! options

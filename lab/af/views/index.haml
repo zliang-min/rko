@@ -65,7 +65,12 @@
   },
 
   importArticle = function() {
-    Ext.ds.getAt(currentIndex).get('id')
+    Ext.Ajax.request({
+      url: '/articles/' + ds.getAt(currentIndex).get('id') + '/import',
+      method: 'POST',
+      success: function() { console.log('done') },
+      failure: function() { console.log('yes') }
+    });
   },
 
   articleTab = {
@@ -84,7 +89,8 @@
       handler: loadArticle.createCallback('next', '这已经是最后一篇文章了！')
     }, '->', {
       text: '导入',
-      iconCls: 'btn-import'
+      iconCls: 'btn-import',
+      handler: importArticle
     }, '-', {
       text: '删除',
       iconCls: 'btn-delete'

@@ -10,6 +10,11 @@ module ArticleCollector
 
           per_page: 20,
 
+          :enviroments => {
+            :development => {
+            }
+          },
+          ext_dns: [nil, :development, :test].include?(ENV['RACK_ENV']) ? nil : 'http://extjs.cachefly.net',
           database: {
             adapter: 'mysql2',
             encoding: 'UTF8',

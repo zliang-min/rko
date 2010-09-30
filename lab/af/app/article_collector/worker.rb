@@ -12,11 +12,11 @@ module ArticleCollector
 
     def run!
       article = ArticleInfo.find(@article_id)
-      content = Nokogiri::HTML ariticle.content
-      puts "== links"
-      content.css('a').each do |link|
-        puts link
+      content = Nokogiri::HTML article.content
+      content.css('img').each do |image|
+        puts image
       end
+      content.css('script').each { |tag| }
     end
   end
 end

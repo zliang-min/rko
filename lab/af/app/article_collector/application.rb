@@ -33,7 +33,7 @@ module ArticleCollector
       end
     end
 
-    get '/articles/:id/import' do
+    post '/articles/:id/import' do
       Worker.new(params[:id]).run!
       ''
     end
