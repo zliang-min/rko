@@ -1,0 +1,4 @@
+require_relative 'init'
+Bundler.setup :background
+
+require 'resque/tasks'

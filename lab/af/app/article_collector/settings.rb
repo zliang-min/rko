@@ -10,11 +10,8 @@ module ArticleCollector
 
           per_page: 20,
 
-          :enviroments => {
-            :development => {
-            }
-          },
-          ext_dns: [nil, :development, :test].include?(ENV['RACK_ENV']) ? nil : 'http://extjs.cachefly.net',
+          ext_dns: [nil, 'development', 'test'].include?(ENV['RACK_ENV']) ? nil : 'http://extjs.cachefly.net',
+
           database: {
             adapter: 'mysql2',
             encoding: 'UTF8',
@@ -24,7 +21,9 @@ module ArticleCollector
             host: '192.168.0.13',
             username: '51hejia',
             password: 'ruby'
-          }
+          },
+
+          redis: '192.168.0.13'
         }
       end
 

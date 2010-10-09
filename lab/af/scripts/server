@@ -3,6 +3,7 @@
 
 require_relative '../init'
 
+=begin
 Bundler.require 'server'
 
 require 'optparse'
@@ -22,11 +23,30 @@ OptionParser.new do |opts|
 
   opts.on('-o', '--host HOST', "listen on HOST (default: #{options[:host]})") { |host| options[:host] = host }
   opts.on('-p', '--port PORT', "use PORT (default: #{options[:port]})") { |port| options[:port] = port }
-  opts.on('-e', '--env ENVIRONMENT', "use ENVIRONMENT (default: #{options[:environment]})") { |env| options[:environment] = env }
+  opts.on('-e', '--env ENVIRONMENT', "use ENVIRONMENT (default: #{options[:environment]})") { |env| options[:environment] = env.to_sym }
   opts.on('-d', "deamonize (default: #{options[:daemonize]})") { |daemonize| options[:daemonize] = daemonize }
 end.parse! ARGV
 
-ENV['RACK_ENV'] = options[:environment]
+ENV['RACK_ENV'] = options[:environment].to_s
 Process.daemon if options.delete(:daemonize)
 
 ArticleCollector::Application.run! options
+=end
+
+Bundler.setup 'server'
+
+require 'vegas'
+
+Vegas::Runner.new(
+  ArticleCollector::Application,
+  'article-collector',
+  app_dir:    File.expand_path('../../var', __FILE__),
+  before_run: ->(v) {
+    %w[pid url log].each do |ext|
+      v.options[:"#{ext}_file"] = File.join v.app_dir, "#{v.filesystem_friendly_app_name}.#{v.options[:port]}.#{ext}"
+    end
+
+    path = (ENV['ARTICLE_COLLECTOR_CONFIG'] || v.args.first)
+    load path.to_s.strip if path
+  }
+)

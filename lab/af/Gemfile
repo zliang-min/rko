@@ -1,12 +1,17 @@
 # encoding: utf-8
 source "http://rubygems.org"
 
-gem 'thin', :group => :server
-
-gem 'sinatra', :git => 'http://github.com/sinatra/sinatra.git'
+gem 'sinatra', git: 'http://github.com/sinatra/sinatra.git'
 gem 'haml'
 
 gem 'mysql2'
 gem 'activerecord', '~> 3'
 
 gem 'nokogiri', '~> 1.4.3.1'
+
+gem 'resque', git: 'http://github.com/defunkt/resque.git', group: :background
+
+group :server do
+  gem 'thin'
+  gem 'vegas', '~> 0.1.7'
+end

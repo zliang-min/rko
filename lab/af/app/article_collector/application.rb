@@ -22,6 +22,8 @@ module ArticleCollector
     end
 
     get '/' do
+      puts '-' * 30
+      puts "reload_templates? #{settings.reload_templates} ( #{settings.development?} )"
       haml :index
     end
 
@@ -34,8 +36,15 @@ module ArticleCollector
     end
 
     post '/articles/:id/import' do
-      Worker.new(params[:id]).run!
-      ''
+      article = ArticleInfo.select('id, added_status').where(id: params[:id]).first
+
+      unless article.new?
+        content_type :json, charset: 'utf-8'
+        halt [403, {message: '此文章已被收录或者正被处理中。'}.to_json] 
+      end
+
+      article.import 
+      202
     end
 
     get '/articles' do
@@ -51,7 +60,7 @@ module ArticleCollector
         success: true,
         total: articles.count,
         rows: articles.select('id, title, created_at, added_status').order('created_at DESC').offset(params[:start]).limit(params[:limit])
-      }.to_json
+      }.to_json(:methods => [:added_status_human_name, :added_status_name], :except => :added_status)
     end
   end
 end

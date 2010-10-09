@@ -17,3 +17,5 @@ end
 $:.unshift File.expand_path('../app', __FILE__)
 
 require 'article_collector'
+
+Dir[File.expand_path '../init/*.rb', __FILE__].each { |init| require init }

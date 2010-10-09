@@ -10,6 +10,10 @@
     / overrides to base library
     %style(type="text/css")
       :plain
+        .status-new { color: red }
+        .status-processing { color: gray }
+        .status-imported { color: green }
+
         .x-toolbar .btn-search {
           background-image: url(images/action_refresh.gif);
         }
@@ -44,7 +48,7 @@
           margin-left: 10px;
         }
 
-        .article-tab h4 span {
+        .article-tab .time {
           color: orange;
         }
 

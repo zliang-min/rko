@@ -10,6 +10,6 @@ module ArticleCollector
 
   autoload :Application
   autoload :Models
+  autoload :Job
   autoload :Settings
-  autoload :Worker
 end
